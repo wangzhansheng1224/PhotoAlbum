@@ -124,6 +124,11 @@
             
             
             
+            //不显示空相册
+            picker.showsEmptyAlbums = NO;
+            picker.showsNumberOfAssets=YES;
+            
+            
             // to present picker as a form sheet in iPad
             if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
                 picker.modalPresentationStyle = UIModalPresentationFormSheet;
@@ -154,6 +159,7 @@
     CGFloat scale = UIScreen.mainScreen.scale;
     CGSize targetSize = CGSizeMake(tableViewRowHeight * scale, tableViewRowHeight * scale);
     
+    //最新的方法
 //    [manager ctassetsPickerRequestImageForAsset:asset
 //                                     targetSize:targetSize
 //                                    contentMode:PHImageContentModeAspectFill
@@ -196,7 +202,7 @@
     if (picker.selectedAssets.count >= max)
     {
         UIAlertController *alert =
-        [UIAlertController alertControllerWithTitle:@"Attention"
+        [UIAlertController alertControllerWithTitle:@"提示"
                                             message:[NSString stringWithFormat:@"请不要添加超过%ld张图片", (long)max]
                                      preferredStyle:UIAlertControllerStyleAlert];
         

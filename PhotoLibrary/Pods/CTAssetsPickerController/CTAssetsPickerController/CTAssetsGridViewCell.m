@@ -42,7 +42,7 @@
 @property (nonatomic, strong) UIView *disabledView;
 @property (nonatomic, strong) UIView *highlightedView;
 @property (nonatomic, strong) CTAssetsGridSelectedView *selectedView;
-
+@property (nonatomic, strong) UIImageView *backgroundV;
 @property (nonatomic, assign) BOOL didSetupConstraints;
 
 @end
@@ -100,6 +100,14 @@
     selectedView.hidden = YES;
     self.selectedView = selectedView;
     [self addSubview:self.selectedView];
+    
+    // Background
+    UIImage *backgroundImage = [UIImage ctassetsPickerImageNamed:@"CTAssetsPickerCheck"];
+    UIImageView *backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width-31, 0, 31, 31)];
+    backgroundView.image=backgroundImage;
+    self.backgroundV=backgroundView;
+    self.backgroundV.userInteractionEnabled = NO;
+    [self addSubview:self.backgroundV];
 }
 
 #pragma mark - Apperance
@@ -145,6 +153,7 @@
 {
     super.selected = selected;
     self.selectedView.hidden = !selected;
+    self.backgroundV.hidden=selected;
 }
 
 - (void)setShowsSelectionIndex:(BOOL)showsSelectionIndex
@@ -171,6 +180,7 @@
             [self.disabledView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
             [self.highlightedView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
             [self.selectedView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
+            
         }];
         
         [self.disabledImageView autoCenterInSuperview];

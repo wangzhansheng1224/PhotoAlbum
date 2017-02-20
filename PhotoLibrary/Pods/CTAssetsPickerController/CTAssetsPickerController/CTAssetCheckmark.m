@@ -153,7 +153,7 @@
         [self.shadowImageView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
         [self.checkmarkImageView autoCenterInSuperview];
         
-        self.verticalConstraint   = [self autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:0];
+        self.verticalConstraint   = [self autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0];
         self.horizontalConstraint = [self autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:0];
         
         self.didSetupConstraints = YES;

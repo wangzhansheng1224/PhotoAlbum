@@ -1,0 +1,15 @@
+PODS:
+  - CTAssetsPickerController (3.3.2-alpha):
+    - PureLayout (~> 3.0.0)
+  - PureLayout (3.0.2)
+
+DEPENDENCIES:
+  - CTAssetsPickerController (~> 3.3.2-alpha)
+
+SPEC CHECKSUMS:
+  CTAssetsPickerController: ef06977de8e0b6d6ff11a324d357a12335a61243
+  PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
+
+PODFILE CHECKSUM: 5bceab41e2d3b25e640de0e84beb55a87697204f
+
+COCOAPODS: 1.1.1

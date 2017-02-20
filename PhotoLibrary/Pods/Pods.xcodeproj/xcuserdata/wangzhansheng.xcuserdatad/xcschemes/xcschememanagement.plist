@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>CTAssetsPickerController-CTAssetsPickerController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>CTAssetsPickerController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-PhotoLibrary.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>PureLayout.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>19CD7166927668521FBA42610545987F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4E0199174F82CCD2DEA3DE677CA87FC2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>65F8BBCAE0C43DE468ADD4C3842F9623</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>668C898209CFD881A957318F9892E186</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

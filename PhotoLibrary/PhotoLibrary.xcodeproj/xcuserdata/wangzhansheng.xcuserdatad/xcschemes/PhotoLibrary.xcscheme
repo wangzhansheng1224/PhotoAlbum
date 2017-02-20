@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D260A4A41E5AB1C70069EFDE"
+               BlueprintIdentifier = "D260A55F1E5AD4DA0069EFDE"
                BuildableName = "PhotoLibrary.app"
                BlueprintName = "PhotoLibrary"
                ReferencedContainer = "container:PhotoLibrary.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D260A4BD1E5AB1C70069EFDE"
+               BlueprintIdentifier = "D260A5781E5AD4DB0069EFDE"
                BuildableName = "PhotoLibraryTests.xctest"
                BlueprintName = "PhotoLibraryTests"
                ReferencedContainer = "container:PhotoLibrary.xcodeproj">
@@ -42,7 +42,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D260A4C81E5AB1C70069EFDE"
+               BlueprintIdentifier = "D260A5831E5AD4DB0069EFDE"
                BuildableName = "PhotoLibraryUITests.xctest"
                BlueprintName = "PhotoLibraryUITests"
                ReferencedContainer = "container:PhotoLibrary.xcodeproj">
@@ -52,7 +52,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D260A4A41E5AB1C70069EFDE"
+            BlueprintIdentifier = "D260A55F1E5AD4DA0069EFDE"
             BuildableName = "PhotoLibrary.app"
             BlueprintName = "PhotoLibrary"
             ReferencedContainer = "container:PhotoLibrary.xcodeproj">
@@ -75,7 +75,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D260A4A41E5AB1C70069EFDE"
+            BlueprintIdentifier = "D260A55F1E5AD4DA0069EFDE"
             BuildableName = "PhotoLibrary.app"
             BlueprintName = "PhotoLibrary"
             ReferencedContainer = "container:PhotoLibrary.xcodeproj">
@@ -94,7 +94,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D260A4A41E5AB1C70069EFDE"
+            BlueprintIdentifier = "D260A55F1E5AD4DA0069EFDE"
             BuildableName = "PhotoLibrary.app"
             BlueprintName = "PhotoLibrary"
             ReferencedContainer = "container:PhotoLibrary.xcodeproj">

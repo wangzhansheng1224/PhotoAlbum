@@ -1,3 +1,5 @@
+platform :ios, '8.0'
+use_frameworks!
 target'PhotoLibrary'do
 pod 'CTAssetsPickerController', '~> 3.3.2-alpha'
 end

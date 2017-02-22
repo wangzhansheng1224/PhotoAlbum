@@ -18,6 +18,13 @@
 		D260A5891E5AD4DB0069EFDE /* PhotoLibraryUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D260A5881E5AD4DB0069EFDE /* PhotoLibraryUITests.m */; };
 		D260A5981E5AD62F0069EFDE /* NavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D260A5971E5AD62F0069EFDE /* NavViewController.m */; };
 		D260A6631E5AD9E80069EFDE /* CTAssetsPicker.strings in Resources */ = {isa = PBXBuildFile; fileRef = D260A6491E5AD9E80069EFDE /* CTAssetsPicker.strings */; };
+		D260A6B91E5C45AC0069EFDE /* FileHash.m in Sources */ = {isa = PBXBuildFile; fileRef = D260A6B81E5C45AC0069EFDE /* FileHash.m */; };
+		D260A6BB1E5C4CA20069EFDE /* B84E8479-475C-4727-A4A4-B77AA9980897.png in Resources */ = {isa = PBXBuildFile; fileRef = D260A6BA1E5C4CA20069EFDE /* B84E8479-475C-4727-A4A4-B77AA9980897.png */; };
+		D260A6BD1E5D25150069EFDE /* CDD298B9-DCFA-47C4-BB32-5A0F779095AE.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D260A6BC1E5D25150069EFDE /* CDD298B9-DCFA-47C4-BB32-5A0F779095AE.jpg */; };
+		D260A6C31E5D2A7C0069EFDE /* UIImage+PPCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = D260A6C21E5D2A7C0069EFDE /* UIImage+PPCategory.m */; };
+		D260A6C91E5D659F0069EFDE /* ImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D260A6C81E5D659F0069EFDE /* ImageModel.m */; };
+		D260A6CD1E5D65DE0069EFDE /* WZSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D260A6CB1E5D65DE0069EFDE /* WZSTableViewCell.m */; };
+		D260A6CE1E5D65DE0069EFDE /* WZSTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D260A6CC1E5D65DE0069EFDE /* WZSTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +89,17 @@
 		D260A6601E5AD9E80069EFDE /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/CTAssetsPicker.strings; sourceTree = "<group>"; };
 		D260A6611E5AD9E80069EFDE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/CTAssetsPicker.strings"; sourceTree = "<group>"; };
 		D260A6621E5AD9E80069EFDE /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/CTAssetsPicker.strings"; sourceTree = "<group>"; };
+		D260A6B71E5C45AC0069EFDE /* FileHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileHash.h; sourceTree = "<group>"; };
+		D260A6B81E5C45AC0069EFDE /* FileHash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileHash.m; sourceTree = "<group>"; };
+		D260A6BA1E5C4CA20069EFDE /* B84E8479-475C-4727-A4A4-B77AA9980897.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "B84E8479-475C-4727-A4A4-B77AA9980897.png"; sourceTree = "<group>"; };
+		D260A6BC1E5D25150069EFDE /* CDD298B9-DCFA-47C4-BB32-5A0F779095AE.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "CDD298B9-DCFA-47C4-BB32-5A0F779095AE.jpg"; sourceTree = "<group>"; };
+		D260A6C11E5D2A7C0069EFDE /* UIImage+PPCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+PPCategory.h"; sourceTree = "<group>"; };
+		D260A6C21E5D2A7C0069EFDE /* UIImage+PPCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+PPCategory.m"; sourceTree = "<group>"; };
+		D260A6C71E5D659F0069EFDE /* ImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageModel.h; sourceTree = "<group>"; };
+		D260A6C81E5D659F0069EFDE /* ImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageModel.m; sourceTree = "<group>"; };
+		D260A6CA1E5D65DE0069EFDE /* WZSTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZSTableViewCell.h; sourceTree = "<group>"; };
+		D260A6CB1E5D65DE0069EFDE /* WZSTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZSTableViewCell.m; sourceTree = "<group>"; };
+		D260A6CC1E5D65DE0069EFDE /* WZSTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WZSTableViewCell.xib; sourceTree = "<group>"; };
 		E8A32AC0C8F430CE94D1C1F6 /* Pods-PhotoLibrary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoLibrary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoLibrary/Pods-PhotoLibrary.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,6 +175,16 @@
 				D260A5671E5AD4DA0069EFDE /* AppDelegate.m */,
 				D260A5691E5AD4DA0069EFDE /* ViewController.h */,
 				D260A56A1E5AD4DA0069EFDE /* ViewController.m */,
+				D260A6C71E5D659F0069EFDE /* ImageModel.h */,
+				D260A6C81E5D659F0069EFDE /* ImageModel.m */,
+				D260A6CA1E5D65DE0069EFDE /* WZSTableViewCell.h */,
+				D260A6CB1E5D65DE0069EFDE /* WZSTableViewCell.m */,
+				D260A6CC1E5D65DE0069EFDE /* WZSTableViewCell.xib */,
+				D260A6C11E5D2A7C0069EFDE /* UIImage+PPCategory.h */,
+				D260A6C21E5D2A7C0069EFDE /* UIImage+PPCategory.m */,
+				D260A6BC1E5D25150069EFDE /* CDD298B9-DCFA-47C4-BB32-5A0F779095AE.jpg */,
+				D260A6BA1E5C4CA20069EFDE /* B84E8479-475C-4727-A4A4-B77AA9980897.png */,
+				D260A6B61E5C45AC0069EFDE /* Library */,
 				D260A6481E5AD9E80069EFDE /* Resources */,
 				D260A5961E5AD62F0069EFDE /* NavViewController.h */,
 				D260A5971E5AD62F0069EFDE /* NavViewController.m */,
@@ -201,6 +229,15 @@
 				D260A6491E5AD9E80069EFDE /* CTAssetsPicker.strings */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		D260A6B61E5C45AC0069EFDE /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				D260A6B71E5C45AC0069EFDE /* FileHash.h */,
+				D260A6B81E5C45AC0069EFDE /* FileHash.m */,
+			);
+			path = Library;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -337,8 +374,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D260A5731E5AD4DA0069EFDE /* LaunchScreen.storyboard in Resources */,
+				D260A6BB1E5C4CA20069EFDE /* B84E8479-475C-4727-A4A4-B77AA9980897.png in Resources */,
 				D260A5701E5AD4DA0069EFDE /* Assets.xcassets in Resources */,
 				D260A6631E5AD9E80069EFDE /* CTAssetsPicker.strings in Resources */,
+				D260A6CE1E5D65DE0069EFDE /* WZSTableViewCell.xib in Resources */,
+				D260A6BD1E5D25150069EFDE /* CDD298B9-DCFA-47C4-BB32-5A0F779095AE.jpg in Resources */,
 				D260A56E1E5AD4DA0069EFDE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,7 +452,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D260A6B91E5C45AC0069EFDE /* FileHash.m in Sources */,
+				D260A6C31E5D2A7C0069EFDE /* UIImage+PPCategory.m in Sources */,
+				D260A6C91E5D659F0069EFDE /* ImageModel.m in Sources */,
 				D260A56B1E5AD4DA0069EFDE /* ViewController.m in Sources */,
+				D260A6CD1E5D65DE0069EFDE /* WZSTableViewCell.m in Sources */,
 				D260A5681E5AD4DA0069EFDE /* AppDelegate.m in Sources */,
 				D260A5981E5AD62F0069EFDE /* NavViewController.m in Sources */,
 				D260A5651E5AD4DA0069EFDE /* main.m in Sources */,

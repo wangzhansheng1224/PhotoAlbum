@@ -8,12 +8,16 @@
 
 #import "ViewController.h"
 #import <CTAssetsPickerController/CTAssetsPickerController.h>
+#import "FileHash.h"
+#import "UIImage+PPCategory.h"
+#import "WZSTableViewCell.h"
+#import "ImageModel.h"
 //#import "PHImageManager+CTAssetsPickerController.h"
 #define tableViewRowHeight 80.0f
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource,CTAssetsPickerControllerDelegate>
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, copy) NSArray *assets;
+@property (nonatomic, strong) NSMutableArray *assets;
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 @property (nonatomic, strong) PHImageRequestOptions *requestOptions;
 @property (nonatomic, strong) UIColor *color1;
@@ -82,6 +86,7 @@
     self.tableView.tableFooterView=[[UIView alloc]init];
     [self.view addSubview:self.tableView];
     self.tableView.rowHeight = tableViewRowHeight;
+    [self.tableView registerNib:[UINib nibWithNibName:@"WZSTableViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
     
     //图片时间
     self.dateFormatter = [[NSDateFormatter alloc] init];
@@ -146,41 +151,11 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    WZSTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    if (cell == nil)
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
-    
-    PHAsset *asset = [self.assets objectAtIndex:indexPath.row];
-    cell.textLabel.text         = [self.dateFormatter stringFromDate:asset.creationDate];
-    cell.detailTextLabel.text   = [NSString stringWithFormat:@"%ld X %ld", (long)asset.pixelWidth, (long)asset.pixelHeight];
-    cell.accessoryType          = UITableViewCellAccessoryDisclosureIndicator;
-    cell.clipsToBounds          = YES;
-    
-    PHImageManager *manager = [PHImageManager defaultManager];
-    CGFloat scale = UIScreen.mainScreen.scale;
-    CGSize targetSize = CGSizeMake(tableViewRowHeight * scale, tableViewRowHeight * scale);
-    
-    //最新的方法
-//    [manager ctassetsPickerRequestImageForAsset:asset
-//                                     targetSize:targetSize
-//                                    contentMode:PHImageContentModeAspectFill
-//                                        options:self.requestOptions
-//                                  resultHandler:^(UIImage *image, NSDictionary *info){
-//                                      cell.imageView.image = image;
-//                                      [cell setNeedsLayout];
-//                                      [cell layoutIfNeeded];
-//                                  }];
-    //3.3.0版本方法
-    [manager requestImageForAsset:asset
-                       targetSize:targetSize
-                      contentMode:PHImageContentModeAspectFill
-                          options:self.requestOptions
-                    resultHandler:^(UIImage *image, NSDictionary *info){
-                        cell.imageView.image = image;
-                        [cell setNeedsLayout];
-                        [cell layoutIfNeeded];
-                    }];
+    ImageModel *model=self.assets[indexPath.row];
+    cell.LeftImage.image=[UIImage imageWithContentsOfFile:model.imagePath];
+    cell.RightLabel.text=model.md5Str;
     
     return cell;
     
@@ -189,10 +164,57 @@
 #pragma mark - Assets Picker Delegate相册选择完毕回调
 - (void)assetsPickerController:(CTAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets
 {
+    __block NSInteger Num = 0;
     [picker dismissViewControllerAnimated:YES completion:nil];
+    for (NSInteger i=0; i<assets.count; i++) {
+        PHAsset *assetImage = assets[i];
+        
+        PHImageManager *manager = [PHImageManager defaultManager];
+        CGSize targetSize = CGSizeMake(assetImage.pixelWidth, assetImage.pixelHeight);
+        
+        
+        [manager requestImageForAsset:assetImage
+                                targetSize:targetSize
+                               contentMode:PHImageContentModeAspectFill
+                                   options:self.requestOptions
+                             resultHandler:^(UIImage *image, NSDictionary *info){
+                                 
+                                 NSData *data;
+                                 if (image.size.width > 4000 || image.size.height > 4000) {
+                                     CGSize size = CGSizeMake(image.size.width *0.6, image.size.height *0.6);
+                                     image = [image scaleToSize:size];
+                                     //image = [self rotateImage:image];
+                                     data = UIImageJPEGRepresentation(image, 0.000001f);
+                                 }else{
+                                     image = [self rotateImage:image];
+                                     data = UIImageJPEGRepresentation(image, 0.8f);
+                                 }
+                                 NSString *path_document = NSHomeDirectory();
+                                 //设置一个图片的存储路径
+                                 NSRange rang=[assetImage.localIdentifier rangeOfString:@"/"];
+                                 NSString *pathStr=[assetImage.localIdentifier substringToIndex:rang.location];
+                                 
+                                 NSString *imagePath = [path_document stringByAppendingString:[NSString stringWithFormat:@"/Documents/%@.jpg",pathStr]];
+                                 [data writeToFile:imagePath atomically:YES];
+                                 
+                                 //把图片直接保存到指定的路径（同时应该把图片的路径imagePath存起来，下次就可以直接用来取）
+                                 
+                                 NSString *executableFileMD5Hash = [FileHash md5HashOfFileAtPath:imagePath];
+                                 
+                                 ImageModel *model=[[ImageModel alloc]init];
+                                 model.imagePath=imagePath;
+                                 model.md5Str=executableFileMD5Hash;
+                                 [self.assets addObject:model];
+                                 
+                                 Num++;
+                                 if (Num==assets.count) {
+                                     [self.tableView reloadData];
+                                 }
+                             }];
+
+    }
     
-    self.assets = [NSMutableArray arrayWithArray:assets];
-    [self.tableView reloadData];
+    
 }
 
 #pragma mark - implement should select asset delegate限制最大选择数量
@@ -222,5 +244,112 @@
     return (picker.selectedAssets.count < max);
 }
 
+//处理图片
+- (UIImage* )rotateImage:(UIImage *)image {
+    //    int kMaxResolution = 320;
+    // Or whatever
+    CGImageRef imgRef = image.CGImage;
+    CGFloat width = CGImageGetWidth(imgRef);
+    CGFloat height = CGImageGetHeight(imgRef);
+    CGAffineTransform transform = CGAffineTransformIdentity;
+    CGRect bounds = CGRectMake(0, 0, width, height);
+    
+    
+    
+    //    if (width > kMaxResolution || height > kMaxResolution) {
+    //        CGFloat ratio = width  /  height;
+    //        if (ratio > 1 ) {
+    //            bounds.size.width = kMaxResolution;
+    //            bounds.size.height = bounds.size.width / ratio;
+    //        }
+    //        else {
+    //            bounds.size.height = kMaxResolution;
+    //            bounds.size.width = bounds.size.height * ratio;
+    //        }
+    //    }
+    CGFloat scaleRatio = 1;//bounds.size.width / width;
+    CGSize imageSize = CGSizeMake(CGImageGetWidth(imgRef), CGImageGetHeight(imgRef));
+    CGFloat boundHeight;
+    UIImageOrientation orient = image.imageOrientation;
+    switch (orient) {
+        case UIImageOrientationUp:
+            //EXIF = 1
+            transform = CGAffineTransformIdentity;
+            break;
+        case UIImageOrientationUpMirrored:
+            //EXIF = 2
+            transform = CGAffineTransformMakeTranslation(imageSize.width, 0.0);
+            transform = CGAffineTransformScale(transform, -1.0, 1.0 );
+            break;
+        case UIImageOrientationDown:
+            //EXIF = 3
+            transform = CGAffineTransformMakeTranslation(imageSize.width, imageSize.height);
+            transform = CGAffineTransformRotate(transform, M_PI);
+            break;
+        case UIImageOrientationDownMirrored:
+            //EXIF = 4
+            transform = CGAffineTransformMakeTranslation(0.0, imageSize.height);
+            transform = CGAffineTransformScale(transform, 1.0, -1.0);
+            break;
+        case UIImageOrientationLeftMirrored:
+            //EXIF = 5
+            boundHeight = bounds.size.height;
+            bounds.size.height = bounds.size.width;
+            bounds.size.width = boundHeight;
+            transform = CGAffineTransformMakeTranslation(imageSize.height, imageSize.width );
+            transform = CGAffineTransformScale(transform, -1.0, 1.0);
+            transform = CGAffineTransformRotate(transform, 3.0 * M_PI / 2.0 );
+            break;
+        case UIImageOrientationLeft:
+            //EXIF = 6
+            boundHeight = bounds.size.height;
+            bounds.size.height = bounds.size.width;
+            bounds.size.width = boundHeight;
+            transform = CGAffineTransformMakeTranslation(0.0, imageSize.width);
+            transform = CGAffineTransformRotate( transform, 3.0 * M_PI / 2.0  );
+            break;
+        case UIImageOrientationRightMirrored:
+            //EXIF = 7
+            boundHeight = bounds.size.height;
+            bounds.size.height = bounds.size.width;
+            bounds.size.width = boundHeight;
+            transform = CGAffineTransformMakeScale(-1.0, 1.0);
+            transform = CGAffineTransformRotate( transform, M_PI / 2.0);
+            break;
+        case UIImageOrientationRight:
+            //EXIF = 8
+            boundHeight = bounds.size.height;
+            bounds.size.height = bounds.size.width;
+            bounds.size.width = boundHeight;
+            transform = CGAffineTransformMakeTranslation(imageSize.height, 0.0);
+            transform = CGAffineTransformRotate(transform, M_PI / 2.0 );
+            break;
+        default:
+            return image;
+            ;
+            //            [NSExceptionraise:NSInternalInconsistencyExceptionformat:@"Invalid image orientation"];
+    }
+    UIGraphicsBeginImageContext(bounds.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    if (orient == UIImageOrientationRight || orient == UIImageOrientationLeft) {
+        CGContextScaleCTM(context, -scaleRatio, scaleRatio);
+        CGContextTranslateCTM(context, -height, 0);
+    }
+    else {
+        CGContextScaleCTM(context, scaleRatio, -scaleRatio);
+        CGContextTranslateCTM(context, 0, -height);
+    }
+    CGContextConcatCTM(context, transform );
+    CGContextDrawImage(UIGraphicsGetCurrentContext(), CGRectMake(0, 0, width, height), imgRef);
+    UIImage *imageCopy = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return imageCopy;
+}
 
+- (NSMutableArray *)assets{
+    if (!_assets) {
+        _assets=[[NSMutableArray alloc]init];
+    }
+    return _assets;
+}
 @end

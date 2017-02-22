@@ -99,7 +99,7 @@
 }
 
 - (void)clearAssets{
-    self.assets = [[NSMutableArray alloc] init];
+    [self.assets removeAllObjects];
     [self.tableView reloadData];
 }
 
@@ -165,6 +165,7 @@
 - (void)assetsPickerController:(CTAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets
 {
     __block NSInteger Num = 0;
+    
     [picker dismissViewControllerAnimated:YES completion:nil];
     for (NSInteger i=0; i<assets.count; i++) {
         PHAsset *assetImage = assets[i];
@@ -196,7 +197,7 @@
                                  
                                  NSString *imagePath = [path_document stringByAppendingString:[NSString stringWithFormat:@"/Documents/%@.jpg",pathStr]];
                                  [data writeToFile:imagePath atomically:YES];
-                                 
+                                 NSLog(@"%@",imagePath);
                                  //把图片直接保存到指定的路径（同时应该把图片的路径imagePath存起来，下次就可以直接用来取）
                                  
                                  NSString *executableFileMD5Hash = [FileHash md5HashOfFileAtPath:imagePath];
@@ -243,6 +244,10 @@
     // limit selection to max
     return (picker.selectedAssets.count < max);
 }
+
+
+
+
 
 //处理图片
 - (UIImage* )rotateImage:(UIImage *)image {
@@ -346,10 +351,15 @@
     return imageCopy;
 }
 
+
+
+
 - (NSMutableArray *)assets{
     if (!_assets) {
         _assets=[[NSMutableArray alloc]init];
     }
     return _assets;
 }
+
+
 @end

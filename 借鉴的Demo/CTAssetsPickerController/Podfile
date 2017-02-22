@@ -1,0 +1,4 @@
+platform :ios, '8.0'
+target:CTAssetsPickerDemo do
+pod 'CTAssetsPickerController', '~> 3.3.2-alpha'
+end

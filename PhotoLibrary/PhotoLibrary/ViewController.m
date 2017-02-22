@@ -12,7 +12,6 @@
 #import "UIImage+PPCategory.h"
 #import "WZSTableViewCell.h"
 #import "ImageModel.h"
-//#import "PHImageManager+CTAssetsPickerController.h"
 #define tableViewRowHeight 80.0f
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource,CTAssetsPickerControllerDelegate>
@@ -23,7 +22,6 @@
 @property (nonatomic, strong) UIColor *color1;
 @property (nonatomic, strong) UIColor *color2;
 @property (nonatomic, strong) UIFont *font;
-
 @end
 
 @implementation ViewController
@@ -157,6 +155,10 @@
     cell.LeftImage.image=[UIImage imageWithContentsOfFile:model.imagePath];
     cell.RightLabel.text=model.md5Str;
     
+//    cell.textLabel.text         = [self.dateFormatter stringFromDate:asset.creationDate];
+//    cell.detailTextLabel.text   = [NSString stringWithFormat:@"%ld X %ld", (long)asset.pixelWidth, (long)asset.pixelHeight];
+//    cell.accessoryType          = UITableViewCellAccessoryDisclosureIndicator;
+//    cell.clipsToBounds          = YES;
     return cell;
     
 }

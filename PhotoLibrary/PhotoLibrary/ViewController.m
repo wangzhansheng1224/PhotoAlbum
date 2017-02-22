@@ -13,6 +13,7 @@
 #import "WZSTableViewCell.h"
 #import "ImageModel.h"
 #define tableViewRowHeight 80.0f
+#define MAX_PHOTOS_NUM 5
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource,CTAssetsPickerControllerDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -223,7 +224,7 @@
 #pragma mark - implement should select asset delegate限制最大选择数量
 - (BOOL)assetsPickerController:(CTAssetsPickerController *)picker shouldSelectAsset:(PHAsset *)asset
 {
-    NSInteger max = 3;
+    NSInteger max = MAX_PHOTOS_NUM;
     
     // show alert gracefully
     if (picker.selectedAssets.count >= max)
@@ -247,6 +248,18 @@
     return (picker.selectedAssets.count < max);
 }
 
+#pragma mark - 修改CollectionCell的layout
+- (UICollectionViewLayout *)assetsPickerController:(CTAssetsPickerController *)picker collectionViewLayoutForContentSize:(CGSize)contentSize traitCollection:(UITraitCollection *)trait
+{
+    UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
+    layout.itemSize = CGSizeMake((contentSize.width-20)/4, (contentSize.width-20)/4);
+    layout.minimumInteritemSpacing = 4;
+    layout.minimumLineSpacing = 4;
+    layout.sectionInset = UIEdgeInsetsMake(4, 4, 4, 4);
+    layout.footerReferenceSize = CGSizeMake(contentSize.width, 10);
+    
+    return (UICollectionViewLayout *)layout;
+}
 
 
 
